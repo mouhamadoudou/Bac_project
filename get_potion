@@ -1,0 +1,62 @@
+#!/usr/bin/env python3
+##
+## Mouhamadou Niang, 2022
+## project_main.py
+## File description:
+## main file
+##
+
+import sys
+import get_data_listed
+
+def function_calc(data_l, data_time, nb_student):
+    result = 0
+    i = 0
+    a = 0
+
+    while data_l[i] != None:
+        a = int(data_l[i])
+        result = result + a
+        i += 1
+    if result <= int(data_time):
+        return (0)
+    return (-1)
+    
+def start_analys(list_data, data_time, nb_student):
+    res = 0
+    check1 = function_calc(list_data[0],data_time[0], nb_student)
+    check2 = function_calc(list_data[1],data_time[1], nb_student)
+    check3 = function_calc(list_data[2],data_time[2], nb_student)
+    res = check1 + check2 + check3
+
+    if res == 0:
+        print("True")
+    else:
+        print("False")
+    
+def main_start(arg):
+
+    data_str = get_file(arg)
+    data_time = get_time(data_str)
+    nb_student = get_student(data_str)
+    if nb_student == 0:
+        return (0)
+    data_list_res = get_list(data_str)
+
+    start_analys(data_list_res, data_time, nb_student)
+    
+def main():
+    argc = len(sys.argv)
+    i = 1
+
+    if argc == 2:
+        if (sys.argv[1][0] == '-' and sys.argv[1][1] == 'h' and len(sys.argv[1]) == 2):
+            display_flag_h()
+            sys.exit(0)
+    while i < argc:
+        main_start(sys.argv[i])
+        i += 1
+    sys.exit(0)
+
+if __name__ == '__main__':
+    main()
